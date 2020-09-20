@@ -2,13 +2,22 @@ import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom';
+
+import { auth } from '../../firebase';
 import { useStateValue } from '../../store/StateProvider';
 
 import './Header.css';
 
 export const Header = ({ }) => {
-    const [state, dispatch] = useStateValue();
-    const cartCount = state.cart.length;
+    const [{user, cart}, dispatch] = useStateValue();
+    const cartCount = cart.length;
+
+    const handleAuthentication = () => {
+        if (user) {
+            auth.signOut();
+        }
+    };
+
     return (
         <div className='header'> 
             <Link to="/">
@@ -20,12 +29,14 @@ export const Header = ({ }) => {
                 {/* search icon logo */}
             </div>
             <div className="header__nav">
-                <div className="header__navOption">
+                <div className="header__navOption" >
                     <span className="header__optionLineOne">
-                        Hello
+                        Hello { user ? user.email : 'Guest'}
                     </span>
-                    <span className="header__optionLineTwo">
-                        Sign in
+                    <span className="header__optionLineTwo" onClick={handleAuthentication}>
+                        <Link to={!user && '/login'} className="header__link">
+                            {user ? 'Sign Out' : 'Sign In'}
+                        </Link>
                     </span>
                 </div>
                 <div className="header__navOption">
@@ -44,7 +55,7 @@ export const Header = ({ }) => {
                         Prime
                     </span>
                 </div>
-                <Link to="/checkout" className="header__navOption header__cart_link">
+                <Link to="/checkout" className="header__navOption header__link">
                     <div className="">
                         <span className="header__optionLineOne header__cart__icon">
                             <ShoppingBasketIcon /> {cartCount}

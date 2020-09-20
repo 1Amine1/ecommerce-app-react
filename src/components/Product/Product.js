@@ -43,7 +43,7 @@ export const Product = ({ id, title, price, image, rating }) => {
                 </div>
             </div>
             
-            <img className="product__image" src="https://homedepot.scene7.com/is/image/homedepotcanada/p_1001094011.jpg?wid=1000&hei=1000&op_sharpen=1" alt="Product Image" />
+            <img className="product__image" src={image} alt="Product Image" />
             
             <button className="btn product__add" onClick={addToCartHandler}>Add to Cart</button>
             

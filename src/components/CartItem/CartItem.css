@@ -1,8 +1,26 @@
-.cart_item {
-    width: 90%;
-    margin: 20px;
-    padding: 20px;
-    height: 100px;
-    border: 1px solid #f3f3f3;
-    background-color: #cabbbb;
+.cartItem {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    height: max-content;
+    border: 2px solid #f5f5f5;
+}
+
+.cartItem__info {
+    padding-left: 20px;
+}
+
+.cartItem__title {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.cartItem__image {
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}
+
+.cartItem__info_mb_10 {
+    margin-bottom: -10px;
 }
