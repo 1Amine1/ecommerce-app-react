@@ -15,4 +15,16 @@
 .subtotal__checkout_btn {
     width: 100%;
     padding: 5px;
+    cursor: pointer;
+}
+
+.subtotal__checkout_btn:hover {
+    background-color: #131921;
+    color: #cd9042;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.subtotal__checkout_btn:disabled {
+    cursor: not-allowed;
 }

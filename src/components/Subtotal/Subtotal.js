@@ -1,9 +1,14 @@
 import React from 'react';
 import CurrencyFormat from 'react-currency-format';
+import { useHistory } from 'react-router-dom'
+import { useStateValue } from '../../store/StateProvider';
+
 import './Subtotal.css';
 
 
-export const Subtotal = ({subtotal, numberOfItems}) => {
+export const Subtotal = ({ subtotal, numberOfItems }) => {
+    const history = useHistory();
+    // const [{ cart, subtotal}] = useStateValue();
     return (
         <div className="subtotal">
             <CurrencyFormat 
@@ -24,8 +29,8 @@ export const Subtotal = ({subtotal, numberOfItems}) => {
                 prefix={'$'}
 
             />
-            <button className="subtotal__checkout_btn btn" onClick={() => window.confirm('Are you sure you want to proceed to checkout?')}>
-                Proceed to Checkout
+            <button className="subtotal__checkout_btn btn" disabled={subtotal <=0 ? true : false} onClick={(e) => history.push("/payment")}>
+                Proceed to Payment
             </button>
         </div>
     );
