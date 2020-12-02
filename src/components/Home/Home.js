@@ -1,4 +1,5 @@
 import React from 'react';
+import Banner from '../Banner/Banner';
 import { Header } from '../Header/Header';
 import { Product } from '../Product/Product';
 import './Home.css';
@@ -11,6 +12,7 @@ export const Home = ({data}) => {
             <div>
                 <div className="home">
                     <div className="home__container">
+                        <Banner text="Use code GET20 to get 20% of on your first order" />
                         <img className="home__image"
                             src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
                             alt="prime_image"

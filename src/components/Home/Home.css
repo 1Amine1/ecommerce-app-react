@@ -11,6 +11,16 @@
     flex-wrap: wrap;
 } */
 
+.home__offer_baner {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    position: sticky;
+    
+}
+
 .home__row {
     display: flex;
     flex-wrap: wrap;

@@ -9,6 +9,7 @@ import { Header } from '../Header/Header';
 
 import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
+import Banner from '../Banner/Banner';
 
 export const Payment = () => {
     const history = useHistory();
@@ -40,6 +41,7 @@ export const Payment = () => {
             {/* <Header />     */}
             <div className="payment">
                 <div className="payment__container">
+                    <Banner text="Happy shopping! Use code GET20 to get 20% off on this order."/>
                     <h1>Checkout</h1>
                     {/* Delivery Address */}
                     <div className="payment__section">
