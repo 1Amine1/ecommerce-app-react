@@ -32,8 +32,8 @@ export const Home = ({data}) => {
                                 rating={5}
                                 image="https://images-na.ssl-images-amazon.com/images/I/41gVhoPaE5L._SX323_BO1,204,203,200_.jpg"
                             />
-                        </div>
-                        <div className="home__row">
+                        {/* </div> */}
+                        {/* <div className="home__row"> */}
                             {/* Products will render here */}
                             <Product
                                 id="115267"                            
@@ -65,8 +65,8 @@ export const Home = ({data}) => {
                                 image="https://m.media-amazon.com/images/I/718+bq5ApRL._AC_UY218_.jpg"
                             />
                             
-                        </div>
-                        <div className="home__row">
+                        {/* </div> */}
+                        {/* <div className="home__row"> */}
                             {/* Products will render here */}
                             <Product
                                 id="115260"                            
