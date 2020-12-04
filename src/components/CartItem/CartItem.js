@@ -1,6 +1,8 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import StarIcon from '@material-ui/icons/Star';
-import { REMOVE_FROM_CART } from '../../store/action_types';
+import { removeFromCart } from '../../store/actions';
 import { useStateValue } from '../../store/StateProvider';
 
 import './CartItem.css'
@@ -10,11 +12,10 @@ export const CartItem = ({ id, title, price, image, rating }) => {
     const [state, dispatch] = useStateValue();
 
     const removeItemtHandler = () => {
-        dispatch({
-            type: REMOVE_FROM_CART,
-            itemId: id,
-            itemPrice: price,
+        toast.warn(`${title.slice(0,20)}... removed from cart!`, {
+            position: toast.POSITION.BOTTOM_RIGHT
         });
+        dispatch(removeFromCart(id, price));
     };
  
     return (
@@ -38,9 +39,6 @@ export const CartItem = ({ id, title, price, image, rating }) => {
 
                 <button className="btn cartItem__remove" onClick={removeItemtHandler}>Remove from Cart</button>
             </div>
-            
-            
-
         </div>
     );
 }

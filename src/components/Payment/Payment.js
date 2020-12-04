@@ -62,7 +62,7 @@ export const Payment = () => {
                             {cart.map((item, i) => {
                                 return <CartItem
                                     id={item.id}
-                                    name={item.name}
+                                    title={item.title}
                                     price={item.price}
                                     image={item.image}
                                     rating={item.rating}

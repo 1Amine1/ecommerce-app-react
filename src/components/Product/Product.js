@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import StarIcon from '@material-ui/icons/Star';
 import { useStateValue } from '../../store/StateProvider';
-import { ADD_TO_CART} from '../../store/action_types';
+import { ADD_TO_CART } from '../../store/action_types';
+import { addToCart} from '../../store/actions';
+
 
 
 import './Product.css';
@@ -9,20 +13,15 @@ import './Product.css';
 export const Product = ({ id, title, price, image, rating }) => {
 
     const [state, dispatch] = useStateValue();
-   
-    const addToCartHandler = () => {
-        dispatch({
-            type: ADD_TO_CART,
-            item: {
-                id,
-                title,
-                price,
-                image,
-                rating
-            },
-        });
-    }
+    const [showCartButton, setCartButton] = useState(false);
 
+    const addToCartHandler = () => {
+        toast.success(`${title.slice(0,20)}... added to cart successfully!`, {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+        dispatch(addToCart(id, title, price, image, rating));
+        setCartButton(true);
+    }
 
     return (
         <div className="product">
@@ -44,10 +43,11 @@ export const Product = ({ id, title, price, image, rating }) => {
             </div>
             
             <img className="product__image" src={image} alt="Product Image" />
-            
+
             <button className="btn product__add" onClick={addToCartHandler}>Add to Cart</button>
             
-
+            {/* {showCartButton ? <button className="btn product__add" onClick={addToCartHandler}>View Cart</button> : null} */}
+            
         </div>
     );
 }

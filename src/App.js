@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
+import { ToastContainer } from 'react-toastify';
 
 import { auth } from './firebase';
 import { useStateValue } from './store/StateProvider';
@@ -49,6 +50,7 @@ function App() {
           </Elements>
         </Route>
       </Switch>
+      <ToastContainer autoClose={3000}/>
     </Router>
    
   );

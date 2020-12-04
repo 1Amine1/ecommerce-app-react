@@ -37,7 +37,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 cart: newCart,
-                subtotal: state.subtotal - action.itemPrice,
+                subtotal: parseInt(state.subtotal) - parseInt(action.itemPrice),
             };
 
             // delete using filter if all products has unique id
