@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import StarIcon from '@material-ui/icons/Star';
@@ -24,30 +25,33 @@ export const Product = ({ id, title, price, image, rating }) => {
     }
 
     return (
-        <div className="product">
-            <div className="product__info">
-                <p className="product__title">
-                    {title}
-                </p>
-                <p className="product__price">
-                    <small>$</small>
-                    <strong>{price}</strong>
-                </p>
-                <div className="product__rating">
-                    {rating ? Array(Math.floor(rating))
-                        .fill()
-                        .map((_, i) => {
-                            return <StarIcon style={{ color: 'yellow' }}/>
-                        }) : null}
+        <Link to={`/products/${id}`}>
+            <div className="product" >
+                <div className="product__info">
+                    <p className="product__title">
+                        {title}
+                    </p>
+                    <p className="product__price">
+                        <small>$</small>
+                        <strong>{price}</strong>
+                    </p>
+                    <div className="product__rating">
+                        {rating ? Array(Math.floor(rating))
+                            .fill()
+                            .map((_, i) => {
+                                return <StarIcon style={{ color: 'yellow' }}/>
+                            }) : null}
+                    </div>
                 </div>
-            </div>
-            
-            <img className="product__image" src={image} alt="Product Image" />
+                
+                <img className="product__image" src={image} alt="Product Image" />
 
-            <button className="btn product__add" onClick={addToCartHandler}>Add to Cart</button>
-            
-            {/* {showCartButton ? <button className="btn product__add" onClick={addToCartHandler}>View Cart</button> : null} */}
-            
-        </div>
+                <button className="btn product__add" onClick={addToCartHandler}>Add to Cart</button>
+                
+                {/* {showCartButton ? <button className="btn product__add" onClick={addToCartHandler}>View Cart</button> : null} */}
+                
+            </div>
+        </Link>
+        
     );
 }
