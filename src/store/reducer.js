@@ -1,6 +1,8 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, PROCESSED_TO_CHECKOUT, SET_USER } from './action_types';
+import data from '../data.json';
 
 export const initialState = {
+    products: data.products,
     cart: [],
     subtotal: 0,
     user: null,
@@ -16,6 +18,7 @@ export const reducer = (state, action) => {
         }
 
         case ADD_TO_CART: {
+            console.log(state);
             return {
                 ...state,
                 cart: [...state.cart, action.item],
