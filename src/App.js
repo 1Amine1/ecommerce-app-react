@@ -18,6 +18,7 @@ import { ProductDetail } from './components/ProductDetail/ProductDetail';
 import { stripe_key } from './stripe'
 
 import './App.css';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   const [state, dispatch] = useStateValue();
@@ -53,7 +54,8 @@ function App() {
           </Elements>
         </Route>
       </Switch>
-      <ToastContainer autoClose={3000}/>
+      <ToastContainer autoClose={3000} />
+      <Footer />
     </Router>
    
   );

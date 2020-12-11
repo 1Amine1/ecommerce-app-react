@@ -1,4 +1,5 @@
 import React from 'react';
+import Fade from 'react-reveal/Fade';
 import { Header } from '../Header/Header';
 import { Subtotal } from '../Subtotal/Subtotal';
 import { CartItem } from '../CartItem/CartItem';
@@ -8,7 +9,7 @@ import './Checkout.css';
 
 export const Checkout = ({ }) => {
     const [{ cart, subtotal, user }, dispatch] = useStateValue();
-    console.log(user)
+    // console.log(user)
 
     const renderCartItems = cart.map((item, i) => (
             <CartItem id={item.id}
@@ -37,10 +38,12 @@ export const Checkout = ({ }) => {
                         <h3>Hello {user ? user?.email : 'Guest'}</h3>
                         <h2>Your shopping cart has {cart.length} items</h2>                                        
                     </div>
+                    <Fade>
                     <div className="checkout_items">
                         {/* display items selected in cart */}
-                        { cart.length > 0 ? renderCartItems : emptyCartRender}
+                            {cart.length > 0 ? renderCartItems : emptyCartRender}
                     </div>
+                    </Fade>
                 </div>
                 <div className="checkout__right">
                     <Subtotal subtotal={subtotal} numberOfItems={cart.length}/>                
