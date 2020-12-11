@@ -24,8 +24,12 @@ export const Product = ({ id, title, price, image, rating }) => {
         setCartButton(true);
     }
 
+    const viewProductHandler = () => {
+        return 
+    }
+
     return (
-        <Link to={`/products/${id}`}>
+        // <Link to={`/products/${id}`}>
             <div className="product" >
                 <div className="product__info">
                     <p className="product__title">
@@ -46,12 +50,15 @@ export const Product = ({ id, title, price, image, rating }) => {
                 
                 <img className="product__image" src={image} alt="Product Image" />
 
-                <button className="btn product__add" onClick={addToCartHandler}>Add to Cart</button>
+                <div className="product__action">
+                    <button className="btn product__add_btn" onClick={addToCartHandler}>Add to Cart</button>
+                    <button className="btn product__view_btn"><Link to={`/products/${id}`} name={title} >View Product</Link></button>
+                </div>
                 
                 {/* {showCartButton ? <button className="btn product__add" onClick={addToCartHandler}>View Cart</button> : null} */}
                 
             </div>
-        </Link>
+        // </Link>
         
     );
 }

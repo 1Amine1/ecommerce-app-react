@@ -7,15 +7,17 @@ import { auth } from './firebase';
 import { useStateValue } from './store/StateProvider';
 import { login, logout } from './store/actions';
 
+import { Header } from './components/Header/Header';
 import { Login } from './components/Auth/Login';
 import { Checkout } from './components/Checkout/Checkout';
 import { Home } from './components/Home/Home';
 import { Payment } from './components/Payment/Payment';
+import { ProductDetail } from './components/ProductDetail/ProductDetail';
+
 
 import { stripe_key } from './stripe'
 
 import './App.css';
-import { Header } from './components/Header/Header';
 
 function App() {
   const [state, dispatch] = useStateValue();
@@ -41,7 +43,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/products/:id" component={Checkout} />
+        <Route exact path="/products/:id" component={ProductDetail} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/contact-us" component={Checkout} />
         <Route exact path="/payment">

@@ -27,7 +27,10 @@ a {
     transform: scale(1.1);
     border: 2px solid rgb(153, 151, 151);
     cursor: pointer;
+}
 
+.product:hover .product__view_btn {
+    display: block;
 }
 
 .product > img {
@@ -48,16 +51,26 @@ a {
     width: 100%;
 }
 
-.btn {
+.product__action {
+    display: flex;
+    margin: 5px;
+}
+
+.product__view_btn {
+    display: none;
+}
+
+.product__add_btn {
     background-color: #f0c14b;
     border: 1px solid;
     margin-top:10px;
+    margin-right: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
     padding: 10px
 }
 
-.btn:hover {
+.product__add_btn:hover {
     background-color: rgb(17, 17, 17);
     color: white;
 }
