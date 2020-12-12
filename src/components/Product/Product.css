@@ -58,6 +58,7 @@ a {
 
 .product__view_btn {
     display: none;
+    background-color: rgb(237, 247, 232) !important;
 }
 
 .btn {

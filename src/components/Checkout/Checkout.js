@@ -38,12 +38,13 @@ export const Checkout = ({ }) => {
                         <h3>Hello {user ? user?.email : 'Guest'}</h3>
                         <h2>Your shopping cart has {cart.length} items</h2>                                        
                     </div>
-                    <Fade>
                     <div className="checkout_items">
-                        {/* display items selected in cart */}
+                        <Fade delay={200}>
+                            <p style={{display: 'none'}}>hidden</p>   
+                            {/* display items selected in cart */}
                             {cart.length > 0 ? renderCartItems : emptyCartRender}
+                        </Fade>
                     </div>
-                    </Fade>
                 </div>
                 <div className="checkout__right">
                     <Subtotal subtotal={subtotal} numberOfItems={cart.length}/>                
