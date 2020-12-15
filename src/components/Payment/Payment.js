@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
@@ -20,15 +20,37 @@ export const Payment = () => {
     const [disabled, setDisabled] = useState(true);
     const [succeeded, setSucceeded] = useState(false);
     const [processing, setProcessing] = useState("");
-
+    const [clientSecret, setClientSecret] = useState(true);
 
     const stripe = useStripe();
     const elements = useElements();
 
+    useEffect(() => {
+        const getClientSecret = async () => {
+            const response = await fetch(`/payments/create?total=${subtotal * 100}`, {
+                method: "POST",
+            });
+            setClientSecret(response.data.clientSecret);
+        }
+        getClientSecret();
+    }, [cart])
+
     const handleSubmit = async (e) => {
-        // call stripe API to charge user on sumit Buy Now login__button
         e.preventDefault();
         setProcessing(true);
+        // call stripe API to charge user on sumit Buy Now login__button
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: elements.getElement(CardElement)
+            }
+        });
+        if (payload) {
+            setSucceeded(true);
+            setError(null);
+            setProcessing(false);
+            history.replace('orders');
+        }
+        setError("Payment not proceed. Please try again");
     }
 
     const handleChange = (e) => {
