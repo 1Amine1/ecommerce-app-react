@@ -41,6 +41,27 @@
             "price": 14.32,
             "rating":4.8,
             "image": "https://m.media-amazon.com/images/I/718+bq5ApRL._AC_UY218_.jpg"
+        },
+        {
+            "id": "115268",
+            "title": "Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!",
+            "price": 10.50,
+            "rating":5,
+            "image": "https://m.media-amazon.com/images/I/91VokXkn8hL._AC_UY218_.jpg"
+        },
+        {
+            "id": "115269",
+            "title": "Think and Grow Rich: This Book Could Be Worth a Million Dollars to You",
+            "price": 7.07,
+            "rating":4.5,
+            "image": "https://m.media-amazon.com/images/I/9105f0ZQUnL._AC_UY218_.jpg"
+        },
+        {
+            "id": "115270",
+            "title": "How to Win Friends and Influence People",
+            "price": 14.32,
+            "rating":4.8,
+            "image": "https://m.media-amazon.com/images/I/718+bq5ApRL._AC_UY218_.jpg"
         }
 
     ],
