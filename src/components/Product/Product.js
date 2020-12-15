@@ -16,7 +16,8 @@ export const Product = ({ id, title, price, image, rating }) => {
     const [state, dispatch] = useStateValue();
     const [showCartButton, setCartButton] = useState(false);
 
-    const addToCartHandler = () => {
+    const addToCartHandler = (e) => {
+        e.preventDefault();
         toast.success(`${title.slice(0,20)}... added to cart successfully!`, {
             position: toast.POSITION.BOTTOM_RIGHT
         });
@@ -29,7 +30,7 @@ export const Product = ({ id, title, price, image, rating }) => {
     }
 
     return (
-        // <Link to={`/products/${id}`}>
+        <Link to={`/products/${id}`} target="_blank">
             <div className="product" >
                 <div className="product__info">
                     <p className="product__title">
@@ -51,14 +52,14 @@ export const Product = ({ id, title, price, image, rating }) => {
                 <img className="product__image" src={image} alt="Product Image" />
 
                 <div className="product__action">
-                    <button className="btn product__add_btn" onClick={addToCartHandler}>Add to Cart</button>
-                    <button className="btn product__view_btn"><Link to={`/products/${id}`} name={title} >View Product</Link></button>
+                    <button className="btn product__add_btn" onClick={(e) => addToCartHandler(e)}>Add to Cart</button>
+                    {/* <button className="btn product__view_btn"><Link to={`/products/${id}`} name={title} >View Product</Link></button> */}
                 </div>
                 
                 {/* {showCartButton ? <button className="btn product__add" onClick={addToCartHandler}>View Cart</button> : null} */}
                 
             </div>
-        // </Link>
+        </Link>
         
     );
 }
