@@ -30,7 +30,7 @@ export const Payment = () => {
             const response = await fetch(`/payments/create?total=${subtotal * 100}`, {
                 method: "POST",
             });
-            setClientSecret(response.data.clientSecret);
+            // setClientSecret(response.data.clientSecret);
         }
         getClientSecret();
     }, [cart])
@@ -44,7 +44,7 @@ export const Payment = () => {
                 card: elements.getElement(CardElement)
             }
         });
-        if (payload) {
+        if (payload.paymentIntent) {
             setSucceeded(true);
             setError(null);
             setProcessing(false);
