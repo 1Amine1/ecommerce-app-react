@@ -18,7 +18,6 @@ export const reducer = (state, action) => {
         }
 
         case ADD_TO_CART: {
-            console.log(state);
             return {
                 ...state,
                 cart: [...state.cart, action.item],
@@ -49,6 +48,13 @@ export const reducer = (state, action) => {
             //     cart: state.cart.filter((item) => item.id !== action.itemId),
             //     subtotal: state.subtotal - action.itemPrice,
             // };            
+        }
+
+        case EMPTY_CART: {
+            return {
+                ...state,
+                cart: []
+            }
         }
             
         default:

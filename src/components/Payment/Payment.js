@@ -10,10 +10,11 @@ import { Header } from '../Header/Header';
 import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
 import Banner from '../Banner/Banner';
+import { emptyCart } from '../../store/actions';
 
 export const Payment = () => {
     const history = useHistory();
-    const [{user, cart, subtotal}] = useStateValue();
+    const [{user, cart, subtotal}, dispatch] = useStateValue();
     if (subtotal <= 0) history.push('/');
 
     const [error, setError] = useState(null);
@@ -38,7 +39,7 @@ export const Payment = () => {
     }, [cart])
     
     console.log(clientSecret);
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
@@ -52,6 +53,8 @@ export const Payment = () => {
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+            // empty cart on successful paymentIntent
+            dispatch(emptyCart)
             history.replace('orders');
         }
         setError("Payment not proceed. Please try again");
