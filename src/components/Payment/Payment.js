@@ -27,14 +27,18 @@ export const Payment = () => {
 
     useEffect(() => {
         const getClientSecret = async () => {
-            const response = await fetch(`/payments/create?total=${subtotal * 100}`, {
+            const response = await fetch(`http://localhost:5001/amzon-react-clone/us-central1/api/payment/create?total=${subtotal * 100}`, {
                 method: "POST",
-            });
-            // setClientSecret(response.data.clientSecret);
+            }).then(res => res.json());
+            
+            console.log(response)
+            setClientSecret(response.clientSecret);
         }
         getClientSecret();
     }, [cart])
-
+    
+    console.log(clientSecret);
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
