@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-
-import { useStateValue } from '../../store/StateProvider';
-import { CartItem } from '../CartItem/CartItem';
-import { Header } from '../Header/Header';
-
-
-import './Payment.css';
 import CurrencyFormat from 'react-currency-format';
+import { useStateValue } from '../../store/StateProvider';
+import { applyDiscount, emptyCart } from '../../store/actions';
+import { CartItem } from '../CartItem/CartItem';
 import Banner from '../Banner/Banner';
-import { emptyCart } from '../../store/actions';
+import './Payment.css';
 
 export const Payment = () => {
     const history = useHistory();
-    const [{user, cart, subtotal}, dispatch] = useStateValue();
+    const [{user, cart, subtotal, subtotal_after_discount, savings}, dispatch] = useStateValue();
     if (cart.length == 0) history.push('/');
 
     const [error, setError] = useState(null);
@@ -32,14 +28,17 @@ export const Payment = () => {
                 method: "POST",
             }).then(res => res.json());
             
-            console.log(response)
+            // console.log(response)
             setClientSecret(response.clientSecret);
         }
         getClientSecret();
+        dispatch(applyDiscount());
     }, [cart])
-    
-    console.log(clientSecret);
 
+    useEffect(() => {
+        dispatch(applyDiscount());
+    }, [])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
@@ -53,9 +52,11 @@ export const Payment = () => {
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+
             // empty cart on successful paymentIntent
-            dispatch(emptyCart)
-            history.replace('orders');
+            dispatch(emptyCart());
+            
+            history.replace('orders'); //redirect to orders page
         }
         setError("Payment not proceed. Please try again");
     }
@@ -67,11 +68,9 @@ export const Payment = () => {
     
     return (
         <>
-            {/* <Header />     */}
-            <Banner text="Wohoh! You saved 20% on this purchase." />
+            <Banner text="Wohoh! You saved 20% on this purchase." color="green" />
             <div className="payment">
                 <div className="payment__container">
-                    <Banner text="Happy shopping! Use code GET20 to get 20% off on this order."/>
                     <h1>Checkout</h1>
                     {/* Delivery Address */}
                     <div className="payment__section">
@@ -98,10 +97,15 @@ export const Payment = () => {
                                 <div className="payment__priceContainer">
                                     <CurrencyFormat
                                         renderText={(value) => {
-                                            return <h3>Order Total: {value}</h3>
+                                            return (
+                                                <>                                                    
+                                                    <h3>Order Total: {value} <span>(<strike>${subtotal}</strike> 20% discount applied)</span></h3>                    
+                                                    <p>Your Savings: ${savings}</p>
+                                                </>
+                                            )
                                         }}
                                         decimalScale={2}
-                                        value={subtotal}
+                                        value={subtotal_after_discount}
                                         displayType={"text"}
                                         thousandSeparator={true}
                                         prefix={"$"}

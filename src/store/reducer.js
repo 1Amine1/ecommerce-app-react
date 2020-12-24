@@ -52,24 +52,26 @@ export const reducer = (state, action) => {
             // };            
         }
 
-        case EMPTY_CART: {
+        case EMPTY_CART: 
             return {
                 ...state,
                 cart: []
             }
-        }
             
         case APPLY_DISCOUNT: {
-            console.log("apply discount action called")
+            if (state.cart.length === 0) {
+                return {
+                    ...state,
+                    savings: 0,
+                    subtotal_after_discount: 0
+                }
+            }
             const savings = state.subtotal * data.discount / 100;
             const after_discount_price = state.subtotal - savings;
-
-            console.log(savings)
-            console.log(after_discount_price)
             return {
                 ...state,
                 savings,
-                subtotal_after_discount: Math.round(after_discount_price,2)
+                subtotal_after_discount: Math.round(after_discount_price)
             }
         }
             
