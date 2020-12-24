@@ -33,7 +33,7 @@ export const Home = ({ data }) => {
 
     return (
         <>
-            <Banner text="Use code GET20 to get 20% of on your first order" />
+            <Banner text="Special deal: get 20% off on total. Valid only for today" />
             <Header />
             <div>
                 <div className="home">
@@ -41,18 +41,20 @@ export const Home = ({ data }) => {
                         <img className="home__image"
                             src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
                             alt="prime_image"
-                        />                        
-                        <div className="home__row">
-                        {/* Products will render here */}
-                            <Zoom>
-                                {renderProducts}
-                            </Zoom>
-                        </div>                            
-                        <div className="top-products">
-                            <Zoom>
-                                {renderFeatureProducts}
-                            </Zoom>
-                        </div>                          
+                        />
+                        <div className="home__products">
+                            <div className="home__row">
+                            {/* Products will render here */}
+                                <Zoom>
+                                    {renderProducts}
+                                </Zoom>
+                            </div>                            
+                            <div className="top-products">
+                                <Zoom>
+                                    {renderFeatureProducts}
+                                </Zoom>
+                            </div>  
+                        </div>                                                
                     </div>
                 </div>
             </div>

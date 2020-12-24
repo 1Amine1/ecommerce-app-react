@@ -1,10 +1,12 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, PROCESSED_TO_CHECKOUT, SET_USER } from './action_types';
+import { ADD_TO_CART, REMOVE_FROM_CART, PROCESSED_TO_CHECKOUT, SET_USER, EMPTY_CART, APPLY_DISCOUNT } from './action_types';
 import data from '../data.json';
 
 export const initialState = {
     products: data.products,
     cart: [],
     subtotal: 0,
+    subtotal_after_discount: 0,
+    savings: 0,
     user: null,
 }
 
@@ -54,6 +56,20 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 cart: []
+            }
+        }
+            
+        case APPLY_DISCOUNT: {
+            console.log("apply discount action called")
+            const savings = state.subtotal * data.discount / 100;
+            const after_discount_price = state.subtotal - savings;
+
+            console.log(savings)
+            console.log(after_discount_price)
+            return {
+                ...state,
+                savings,
+                subtotal_after_discount: Math.round(after_discount_price,2)
             }
         }
             

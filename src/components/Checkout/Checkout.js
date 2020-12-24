@@ -6,6 +6,7 @@ import { CartItem } from '../CartItem/CartItem';
 import { useStateValue } from '../../store/StateProvider';
 import { Link } from 'react-router-dom';
 import './Checkout.css';
+import Banner from '../Banner/Banner';
 
 export const Checkout = ({ }) => {
     const [{ cart, subtotal, user }, dispatch] = useStateValue();
@@ -28,6 +29,7 @@ export const Checkout = ({ }) => {
     return (
         <>
             <Header />
+            <Banner text="20% discount will be automatic applied on payment page. Enjoy savings!" />
             <div className="checkout">
                 <div className="checkout__left">
                     <img className="checkout__ad"

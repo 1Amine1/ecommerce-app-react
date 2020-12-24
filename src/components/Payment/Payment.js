@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import { useStateValue } from '../../store/StateProvider';
@@ -15,7 +15,7 @@ import { emptyCart } from '../../store/actions';
 export const Payment = () => {
     const history = useHistory();
     const [{user, cart, subtotal}, dispatch] = useStateValue();
-    if (subtotal <= 0) history.push('/');
+    if (cart.length == 0) history.push('/');
 
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
@@ -68,6 +68,7 @@ export const Payment = () => {
     return (
         <>
             {/* <Header />     */}
+            <Banner text="Wohoh! You saved 20% on this purchase." />
             <div className="payment">
                 <div className="payment__container">
                     <Banner text="Happy shopping! Use code GET20 to get 20% off on this order."/>
@@ -79,24 +80,6 @@ export const Payment = () => {
                         </div>
                         <div className="payment__address">
                             <p>{user?.email}</p>
-                        </div>
-                    </div>
-
-                    {/* Review Items */}
-                    <div className="payment__section">
-                        <div className="payment__title">
-                            <h3>Review Items</h3>
-                        </div>
-                        <div className="payment__items">
-                            {cart.map((item, i) => {
-                                return <CartItem
-                                    id={item.id}
-                                    title={item.title}
-                                    price={item.price}
-                                    image={item.image}
-                                    rating={item.rating}
-                                />
-                            } )}
                         </div>
                     </div>
 
@@ -130,6 +113,23 @@ export const Payment = () => {
 
                             </form>
                             
+                        </div>
+                    </div>
+                    {/* Review Items */}
+                    <div className="payment__section">
+                        <div className="payment__title">
+                            <h3>Review Items</h3>
+                        </div>
+                        <div className="payment__items">
+                            {cart.map((item, i) => {
+                                return <CartItem
+                                    id={item.id}
+                                    title={item.title}
+                                    price={item.price}
+                                    image={item.image}
+                                    rating={item.rating}
+                                />
+                            } )}
                         </div>
                     </div>
                 </div>

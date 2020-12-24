@@ -8,5 +8,8 @@ export const PROCESSED_TO_CHECKOUT = 'PROCESSED_TO_CHECKOUT';
 
 export const EMPTY_CART = 'EMPTY_CART';
 
+export const APPLY_DISCOUNT = 'APPLY_DISCOUNT';
+
+
 
 // export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';

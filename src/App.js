@@ -19,6 +19,7 @@ import { stripe_key } from './stripe'
 
 import './App.css';
 import { Footer } from './components/Footer/Footer';
+import { Orders } from './components/Orders/Orders';
 
 function App() {
   const [state, dispatch] = useStateValue();
@@ -47,6 +48,7 @@ function App() {
         <Route exact path="/products/:id" component={ProductDetail} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/contact-us" component={Checkout} />
+        <Route exact path="/orders" component={Orders} />
         <Route exact path="/payment">
           <Header />
           <Elements stripe={stripe_key}>
@@ -57,7 +59,6 @@ function App() {
       <ToastContainer autoClose={3000} />
       <Footer />
     </Router>
-   
   );
 }
 

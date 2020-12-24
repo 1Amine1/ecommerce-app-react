@@ -1,4 +1,4 @@
-import { SET_USER, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART } from './action_types';
+import { SET_USER, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, APPLY_DISCOUNT } from './action_types';
 
 export const login = (userData) => {
     return {
@@ -38,5 +38,11 @@ export const removeFromCart = (id, price) => {
 export const emptyCart = () => {
     return {
         type: EMPTY_CART
+    }
+}
+
+export const applyDiscount = () => {
+    return {
+        type: APPLY_DISCOUNT
     }
 }
