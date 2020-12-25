@@ -7,6 +7,7 @@ import { applyDiscount, emptyCart } from '../../store/actions';
 import { CartItem } from '../CartItem/CartItem';
 import Banner from '../Banner/Banner';
 import './Payment.css';
+import { db } from '../../firebase';
 
 export const Payment = () => {
     const history = useHistory();
@@ -24,7 +25,7 @@ export const Payment = () => {
 
     useEffect(() => {
         const getClientSecret = async () => {
-            const response = await fetch(`http://localhost:5001/amzon-react-clone/us-central1/api/payment/create?total=${subtotal * 100}`, {
+            const response = await fetch(`http://localhost:5001/amzon-react-clone/us-central1/api/payment/create?total=${subtotal_after_discount * 100}`, {
                 method: "POST",
             }).then(res => res.json());
             
@@ -43,17 +44,30 @@ export const Payment = () => {
         e.preventDefault();
         setProcessing(true);
         // call stripe API to charge user on sumit Buy Now login__button
-        const payload = await stripe.confirmCardPayment(clientSecret, {
+        const response = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
         });
-        if (payload.paymentIntent) {
+        const paymentIntent = response.paymentIntent
+        if (paymentIntent) {  //successfully charged
             setSucceeded(true);
             setError(null);
             setProcessing(false);
 
-            // empty cart on successful paymentIntent
+            // store order into firestore database
+            db
+                .collection('users')
+                .doc(user?.uid)
+                .collection('orders')
+                .doc(paymentIntent.id)
+                .set({
+                    items: cart,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created,
+                });
+
+            // empty cart
             dispatch(emptyCart());
             
             history.replace('orders'); //redirect to orders page
