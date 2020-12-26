@@ -64,6 +64,9 @@ export const Payment = () => {
                 .set({
                     items: cart,
                     amount: paymentIntent.amount,
+                    actual_amount: subtotal,
+                    savings: savings,
+                    number_of_items: cart.length,
                     created: paymentIntent.created,
                 });
 

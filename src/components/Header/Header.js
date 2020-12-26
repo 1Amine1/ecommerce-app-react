@@ -40,12 +40,14 @@ export const Header = ({ }) => {
                     </span>
                 </div>
                 <div className="header__navOption">
-                    <span className="header__optionLineOne">
-                        Returns
-                    </span>
-                    <span className="header__optionLineTwo">
-                        & Orders
-                    </span>
+                        <span className="header__optionLineOne">
+                            Returns
+                        </span>
+                        <span className="header__optionLineTwo">
+                            <Link to='/orders' className="header__link">
+                                & Orders
+                            </Link>                    
+                        </span>
                 </div>
                 <div className="header__navOption">
                     <span className="header__optionLineOne">
