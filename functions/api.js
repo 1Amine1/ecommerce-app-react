@@ -8,7 +8,7 @@ export function createCharge (req, res) {
         })
     }
     try {
-        const paymentIntent = await stripe.paymentIntents.create({
+        const paymentIntent = stripe.paymentIntents.create({
             amount: total,  //total value must be in subunits of the currency
             currency: 'cad'
         });
