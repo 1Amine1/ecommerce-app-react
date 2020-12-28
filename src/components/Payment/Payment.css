@@ -25,3 +25,25 @@
 .payment__address, .payment__items, .payment__details {
     flex: 0.8
 }
+
+.payment__details > form{
+    max-width: 500px;
+}
+
+.StripeElement {
+    border: 1px solid lightgrey;
+    padding: 5px
+}
+
+.payment__priceContainer > button {
+    padding: 10px;
+    width: 100%;
+    color: black;
+    background: #83af3c;
+    font-weight: bolder;
+}
+
+.payment__priceContainer > button:hover {
+    color: black;
+    background: #6fa11f;   
+}

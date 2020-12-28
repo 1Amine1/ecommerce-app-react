@@ -39,9 +39,9 @@ export const Orders = () => {
 
     const showOrdersRender = (
         <>
-            {orders.map( order => (
+            {orders.length > 0 ? orders.map( order => (
                 <Order order={order}/>
-            ))}
+            )) : <h5>You haven't purchase any order yet! Quickly add some items in your cart, make payment and come back here to see your past orders.</h5>}
         </>
     )
 

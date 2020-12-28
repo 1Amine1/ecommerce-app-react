@@ -8,10 +8,15 @@ import { CartItem } from '../CartItem/CartItem';
 import Banner from '../Banner/Banner';
 import './Payment.css';
 import { db } from '../../firebase';
+import { createPaymentIntent } from '../../api';
 
 export const Payment = () => {
     const history = useHistory();
+    const stripe = useStripe();
+    const elements = useElements();
+
     const [{user, cart, subtotal, subtotal_after_discount, savings}, dispatch] = useStateValue();
+    
     if (cart.length == 0) history.push('/');
 
     const [error, setError] = useState(null);
@@ -20,25 +25,17 @@ export const Payment = () => {
     const [processing, setProcessing] = useState("");
     const [clientSecret, setClientSecret] = useState(true);
 
-    const stripe = useStripe();
-    const elements = useElements();
-
     useEffect(() => {
-        const getClientSecret = async () => {
-            const response = await fetch(`http://localhost:5001/amzon-react-clone/us-central1/api/payment/create?total=${subtotal_after_discount * 100}`, {
-                method: "POST",
-            }).then(res => res.json());
-            
-            // console.log(response)
-            setClientSecret(response.clientSecret);
+        // dispatch(applyDiscount());
+        const getClientSecretKey = async (amount) => {
+            const stripeResponse = await createPaymentIntent(amount)
+            setClientSecret(stripeResponse.clientSecret);
         }
-        getClientSecret();
-        dispatch(applyDiscount());
+
+        getClientSecretKey(parseInt(subtotal))
     }, [cart])
 
-    useEffect(() => {
-        dispatch(applyDiscount());
-    }, [])
+    console.log(clientSecret)
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -116,13 +113,14 @@ export const Payment = () => {
                                         renderText={(value) => {
                                             return (
                                                 <>                                                    
-                                                    <h3>Order Total: {value} <span>(<strike>${subtotal}</strike> 20% discount applied)</span></h3>                    
-                                                    <p>Your Savings: ${savings}</p>
+                                                    <h3>Order Total: {value}</h3>
+                                                        {/* <span>(<strike>${subtotal}</strike> 20% discount applied)</span>                     */}
+                                                    {/* <p>Your Savings: ${savings}</p> */}
                                                 </>
                                             )
                                         }}
                                         decimalScale={2}
-                                        value={subtotal_after_discount}
+                                        value={subtotal}
                                         displayType={"text"}
                                         thousandSeparator={true}
                                         prefix={"$"}
