@@ -40,6 +40,8 @@ function App() {
 
   }, [])
  
+// MVP v-1 finished on 28 Dec with payment feature working
+
   return (
     <Router>
       <Switch>
