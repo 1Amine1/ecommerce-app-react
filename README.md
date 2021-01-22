@@ -3,7 +3,8 @@
 Complete full-stack E-Commerce app built using React.js which includes core features such as buying an order, making an payment, seeing order history and login/singup created using create-react-app as a starter kit. I build this project for fun and to learn React Context API and firebase. [Click Here](http://bit.ly/ecomm_app) to visit the project.
 
 ## Live Project Demo
-#[Click Here](http://bit.ly/ecomm_app)
+[Click Here](http://bit.ly/ecomm_app)
+
 ![Preview of App](public/project_gif.gif)
 
 ## Goal of the project
