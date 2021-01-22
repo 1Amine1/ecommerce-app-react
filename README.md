@@ -1,15 +1,16 @@
 # E-commerce app using React
 
-Complete full-stack e-commerce app built using ReactJS with includes core features such as buying an order, making an payment, seeing order history and login/singup. I build this project for fun and to learn React Context API and firebase. [click here](http://bit.ly/ecomm_app) to visit the project.
+Complete full-stack E-Commerce app built using React.js which includes core features such as buying an order, making an payment, seeing order history and login/singup created using create-react-app as a starter kit. I build this project for fun and to learn React Context API and firebase. [Click Here](http://bit.ly/ecomm_app) to visit the project.
 
 ## Live Project Demo
-http://bit.ly/ecomm_app
+#[Click Here](http://bit.ly/ecomm_app)
+![Preview of App](public/project_gif.gif)
 
 ## Goal of the project
 I've created this E-Commerce app by mimic the amazon styles and features where user can buy product, pay using their card and view their order history. The end goal is to learn CSS styling using BEM, integrating payment gateway and to learn auto deployment and no-SQL database by leveraging firebase features.
 
 ## Technology & Tools used
-- Front-end
+- **Front-end**
   - React.js
   - HTML5
   - CSS3
@@ -17,10 +18,10 @@ I've created this E-Commerce app by mimic the amazon styles and features where u
   - [React Tostify](https://www.npmjs.com/package/react-toastify) (to show notifications)
   - [React Router](https://www.npmjs.com/package/react-router-dom) (for routing in single page app)
   - Animations using [react-reveal](https://www.npmjs.com/package/react-reveal)
-- Back-end
+- **Back-end**
   - Node.js (deployed payment API as a cloud function)
   - Firebase
-- Tools
+- **Tools**
   - Stripe (for payment gateway integration)
   - Firebase authentication
   - Firebase hosting
